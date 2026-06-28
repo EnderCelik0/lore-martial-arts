@@ -28,6 +28,27 @@ export async function getPage(
   return { ...(page as Page), sections: (sections ?? []) as Section[] };
 }
 
+// Sitemap için: tüm aktif sayfalar (her iki dil, ana sayfalar dahil).
+// updated_at lastModified olarak kullanılır.
+export async function getAllActivePages(): Promise<
+  { slug: string; language: "tr" | "en"; updated_at: string }[]
+> {
+  const supabase = await createClient();
+
+  const { data } = await supabase
+    .from("pages")
+    .select("slug, language, updated_at")
+    .eq("is_active", true)
+    .order("language", { ascending: true })
+    .order("display_order", { ascending: true });
+
+  return (data ?? []) as {
+    slug: string;
+    language: "tr" | "en";
+    updated_at: string;
+  }[];
+}
+
 // Navbar için: ilgili dilin aktif alt sayfaları (ana sayfa hariç).
 // display_order sırasıyla döner. title = navbarda görünen etiket.
 export async function getNavPages(

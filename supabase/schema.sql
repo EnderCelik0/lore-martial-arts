@@ -20,6 +20,9 @@ CREATE TABLE sections (
   image_public_id TEXT NOT NULL,
   image_alt TEXT DEFAULT '',
   seo_text TEXT DEFAULT '',
+  -- Cloudinary'den gelen orijinal boyut — CLS önlemek için <img> width/height
+  image_width INTEGER,
+  image_height INTEGER,
   display_order INTEGER DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()

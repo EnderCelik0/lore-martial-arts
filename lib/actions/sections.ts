@@ -56,6 +56,8 @@ export async function addSection(input: {
   image_public_id: string;
   image_alt?: string;
   seo_text?: string;
+  image_width?: number;
+  image_height?: number;
 }) {
   const supabase = await requireSupabase();
 
@@ -73,6 +75,8 @@ export async function addSection(input: {
       image_public_id: input.image_public_id,
       image_alt: input.image_alt ?? "",
       seo_text: input.seo_text ?? "",
+      image_width: input.image_width ?? null,
+      image_height: input.image_height ?? null,
       display_order: count ?? 0,
     })
     .select("*")

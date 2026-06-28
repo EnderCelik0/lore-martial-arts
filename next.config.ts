@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    // App Router soft-navigation'larını document.startViewTransition ile sarar.
+    viewTransition: true,
+  },
 };
 
 export default nextConfig;

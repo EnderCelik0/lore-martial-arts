@@ -49,6 +49,8 @@ export default function ImageUploader({
       const result = await new Promise<{
         secure_url: string;
         public_id: string;
+        width: number;
+        height: number;
       }>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open(
@@ -75,6 +77,8 @@ export default function ImageUploader({
         page_id: pageId,
         image_url: result.secure_url,
         image_public_id: result.public_id,
+        image_width: result.width,
+        image_height: result.height,
       });
 
       if (res.error || !res.data) {

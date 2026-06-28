@@ -17,6 +17,8 @@ export interface Section {
   image_public_id: string;
   image_alt: string;
   seo_text: string;
+  image_width: number | null;
+  image_height: number | null;
   display_order: number;
   created_at: string;
   updated_at: string;
